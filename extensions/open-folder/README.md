@@ -15,7 +15,7 @@
   <sub>Open Folder Files In The Same Code Instance.</sub>
 </h4>
 
-![](https://raw.githubusercontent.com/rwu823/vscode-extensions/master/public/demo.gif)
+![](https://raw.githubusercontent.com/rwu823/vscode-extensions/master/extensions/open-folder/public/demo.gif)
 
 ## Installation
 
@@ -24,4 +24,4 @@ ext install rwu823.open-folder
 ```
 
 ## Click To Open
-![](https://raw.githubusercontent.com/rwu823/vscode-extensions/master/public/click-to-open.png)
+![](https://raw.githubusercontent.com/rwu823/vscode-extensions/master/extensions/open-folder/public/click-to-open.png)
