@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "./node_modules/@ts-mono/base/.eslintrc.json"
+  ]
+}

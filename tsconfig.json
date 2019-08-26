@@ -1,0 +1,15 @@
+{
+  "extends": "@ts-mono/base/tsconfig",
+  "exclude": [
+    "node_modules",
+    "out/**/*",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "./node_modules/.cache/.tsBuildInfoFile",
+    "outDir": "out",
+    "target": "esnext",
+  },
+}

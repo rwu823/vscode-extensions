@@ -1,0 +1,66 @@
+{
+  "name": "open-folder",
+  "displayName": "Open Folder",
+  "description": "Open Folder Files In The Same Code Instance.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "icon": "media/logo.png",
+  "keywords": [
+    "productive",
+    "tool",
+    "files",
+    "folder"
+  ],
+  "engines": {
+    "vscode": "^1.37.0"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out",
+  "contributes": {
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "openFolder.open",
+          "when": "false"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "openFolder.open",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "openFolder.open",
+          "group": "navigation"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "openFolder.open",
+        "title": "📁Open Folder",
+        "icon": {
+          "dark": "./media/folder.light.svg",
+          "light": "./media/folder.dark.svg"
+        }
+      },
+      {
+        "command": "openFolder.search",
+        "category": "📁Open Folder",
+        "title": "Search Folder To Open"
+      }
+    ]
+  },
+  "dependencies": {
+    "fast-glob": "3.0.4"
+  },
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "rm -rf released && mkdir released && ts-node scripts/build"
+  }
+}
