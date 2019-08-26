@@ -15,13 +15,14 @@
   <sub>Open Folder Files In The Same Code Instance.</sub>
 </h4>
 
+## Usage
+1. Open Command Palette
+2. Type: `search folder to open`
 ![](https://raw.githubusercontent.com/rwu823/vscode-extensions/master/extensions/open-folder/public/demo.gif)
 
-## Installation
 
-```sh
-ext install rwu823.open-folder
-```
-
-## Click To Open
+### Click To Open
+1. explorer menu
+2. editor title menu
+3. status bar
 ![](https://raw.githubusercontent.com/rwu823/vscode-extensions/master/extensions/open-folder/public/click-to-open.png)

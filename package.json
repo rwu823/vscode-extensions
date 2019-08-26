@@ -23,7 +23,7 @@
       "eslint --fix"
     ]
   },
-  "repository": "git@github.com:rwu823/vscode-extensions.git",
+  "repository": "https://github.com/rwu823/vscode-extensions.git",
   "author": "Rocky Wu <rwu823@gmail.com>",
   "license": "MIT"
 }
