@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2019-08-27
+### Changed
+- Change command from `openFolder` to `open-folder`
+
+### Added
+- A default config for controlling status bar displays.
+`"open-folder.showStatusBar": true`
+
 ## [0.1.1] - 2019-08-27
 ### Fixed
 - Open binary files.

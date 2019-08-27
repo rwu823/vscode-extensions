@@ -2,7 +2,7 @@
   "name": "open-folder",
   "displayName": "Open Folder",
   "description": "Open all files of folder in the same VSCode instance.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "license": "MIT",
   "icon": "media/logo.png",
   "keywords": [
@@ -19,30 +19,40 @@
   ],
   "main": "./out",
   "contributes": {
+    "configuration": {
+      "title": "📁Open Folder",
+      "properties": {
+        "open-folder.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Display on status bar."
+        }
+      }
+    },
     "menus": {
       "commandPalette": [
         {
-          "command": "openFolder.open",
+          "command": "open-folder.open",
           "when": "false"
         }
       ],
       "editor/title": [
         {
-          "command": "openFolder.open",
+          "command": "open-folder.open",
           "group": "navigation"
         }
       ],
       "explorer/context": [
         {
           "when": "explorerResourceIsFolder",
-          "command": "openFolder.open",
+          "command": "open-folder.open",
           "group": "navigation"
         }
       ]
     },
     "commands": [
       {
-        "command": "openFolder.open",
+        "command": "open-folder.open",
         "title": "📁Open Folder",
         "icon": {
           "dark": "./media/folder.light.svg",
@@ -50,7 +60,7 @@
         }
       },
       {
-        "command": "openFolder.search",
+        "command": "open-folder.search",
         "category": "📁Open Folder",
         "title": "Search Folder To Open"
       }

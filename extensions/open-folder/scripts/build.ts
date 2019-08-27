@@ -1,4 +1,4 @@
-import sh from 'sh-exec'
+import sh from 'sh-exec' // eslint-disable-line import/no-extraneous-dependencies
 import fs from 'fs'
 
 const pkg = require('../package.json')
@@ -29,6 +29,6 @@ const writeFile = (pathName: string, data: string) =>
     rm -rf $(find . -name '*.map')
     rm -rf $(find node_modules -name '*.d.ts' -o -name '*.md' -o -name 'LICENSE')
 
-    vsce package
+    vsce publish
     `
 })()

@@ -13,13 +13,10 @@ export default async (_uri: vsc.Uri) => {
         ignore: Object.keys(settingSearch.exclude),
       }),
     )
-    .then(sel => vsc.workspace.findFiles(`${sel}/**`))
-    .then(fileUris => {
-      fileUris.forEach(file => {
-        vsc.commands.executeCommand('vscode.open', file, {
-          preview: false,
-          preserveFocus: true,
-        })
-      })
+    .then(sel => {
+      vsc.commands.executeCommand(
+        'open-folder.open',
+        vsc.Uri.file(`${rootPath}/${sel}`),
+      )
     })
 }

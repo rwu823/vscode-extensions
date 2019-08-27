@@ -22,3 +22,12 @@
 2. editor title menu
 3. status bar
 ![](https://raw.githubusercontent.com/rwu823/vscode-extensions/master/extensions/open-folder/public/click-to-open.png)
+
+
+## Default Configs
+
+```json
+{
+  "open-folder.showStatusBar": true,
+}
+```
