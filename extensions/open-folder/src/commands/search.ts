@@ -15,11 +15,11 @@ export default async (_uri: vsc.Uri) => {
     )
     .then(sel => vsc.workspace.findFiles(`${sel}/**`))
     .then(fileUris => {
-      fileUris.forEach(file =>
-        vsc.window.showTextDocument(file, {
+      fileUris.forEach(file => {
+        vsc.commands.executeCommand('vscode.open', file, {
           preview: false,
           preserveFocus: true,
-        }),
-      )
+        })
+      })
     })
 }

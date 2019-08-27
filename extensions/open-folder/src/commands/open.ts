@@ -16,7 +16,10 @@ export default async (uri: vsc.Uri) => {
 
   const fileUris = await vsc.workspace.findFiles(`${dir}/**`)
 
-  fileUris.forEach(file =>
-    vsc.window.showTextDocument(file, { preview: false, preserveFocus: true }),
-  )
+  fileUris.forEach(file => {
+    vsc.commands.executeCommand('vscode.open', file, {
+      preview: false,
+      preserveFocus: true,
+    })
+  })
 }
