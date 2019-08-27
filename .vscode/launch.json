@@ -1,0 +1,40 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "ts",
+      "args": [
+        "-r",
+        "ts-node/register/transpile-only",
+        "-r",
+        "tsconfig-paths/register",
+        "${workspaceFolder}/${relativeFile}"
+      ],
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "ts-jest",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "args": [
+        "${workspaceFolder}/node_modules/.bin/jest",
+        "--runInBand"
+      ],
+    },
+    {
+      "type": "extensionHost",
+      "request": "launch",
+      "name": "dev:open-folder",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/extensions/open-folder"
+      ],
+    },
+  ]
+}

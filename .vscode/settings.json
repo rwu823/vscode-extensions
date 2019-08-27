@@ -1,0 +1,5 @@
+{
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+}
