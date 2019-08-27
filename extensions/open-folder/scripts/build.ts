@@ -26,6 +26,9 @@ const writeFile = (pathName: string, data: string) =>
     cd released
     npm i --no-package-lock
 
+    rm -rf $(find . -name '*.map')
+    rm -rf $(find node_modules -name '*.d.ts' -o -name '*.md' -o -name 'LICENSE')
+
     vsce package
-  `
+    `
 })()

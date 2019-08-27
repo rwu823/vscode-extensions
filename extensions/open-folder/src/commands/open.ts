@@ -1,22 +1,22 @@
-import { exec } from 'child_process'
-import * as vsc from 'vscode'
-import glob from 'fast-glob'
-import path from 'path'
 import fs from 'fs'
+import path from 'path'
+import * as vsc from 'vscode'
 
 export default async (uri: vsc.Uri) => {
-  let dir = '.'
+  let fullDirPath = '.'
 
   if (uri) {
     const stat = fs.statSync(uri.path)
-    dir = stat.isFile() ? path.dirname(uri.path) : uri.path
+    fullDirPath = stat.isFile() ? path.dirname(uri.path) : uri.path
   } else if (vsc.window.activeTextEditor) {
-    dir = path.dirname(vsc.window.activeTextEditor.document.fileName)
+    fullDirPath = path.dirname(vsc.window.activeTextEditor.document.fileName)
   }
 
-  const files = await glob(`${dir}/**/*`, {
-    onlyFiles: true,
-  })
+  const dir = path.relative(vsc.workspace.rootPath!, fullDirPath)
 
-  exec(`code -r ${files.map(file => `'${file}'`).join(' ')}`)
+  const fileUris = await vsc.workspace.findFiles(`${dir}/**`)
+
+  fileUris.forEach(file =>
+    vsc.window.showTextDocument(file, { preview: false, preserveFocus: true }),
+  )
 }

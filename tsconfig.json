@@ -9,6 +9,7 @@
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/.cache/.tsBuildInfoFile",
+    "sourceMap": true,
     "outDir": "out",
     "target": "esnext",
   },
