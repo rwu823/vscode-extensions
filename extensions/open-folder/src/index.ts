@@ -1,36 +1,15 @@
 import * as vsc from 'vscode'
-import path from 'path'
-import commandOpen from './commands/open'
-import commandSearch from './commands/search'
+import * as command from './commands'
+import { updateStatusBar } from './statusBar'
 
-const { showStatusBar } = vsc.workspace.getConfiguration('open-folder')
 export async function activate(ctx: vsc.ExtensionContext) {
-  if (showStatusBar) {
-    const status = vsc.window.createStatusBarItem(vsc.StatusBarAlignment.Right)
-    if (vsc.window.activeTextEditor) {
-      status.text = `📁${path.dirname(
-        vsc.window.activeTextEditor.document.fileName,
-      )}`
-      status.text = status.text.replace(vsc.workspace.rootPath!, '')
-      status.show()
-    }
-
-    status.command = 'open-folder.open'
-
-    vsc.window.onDidChangeActiveTextEditor(editor => {
-      if (editor) {
-        status.text = `📁${path.dirname(editor.document.fileName)}`
-        status.text = status.text.replace(vsc.workspace.rootPath!, '')
-        status.show()
-      } else {
-        status.hide()
-      }
-    })
-  }
+  updateStatusBar()
+  vsc.window.onDidChangeActiveTextEditor(updateStatusBar)
+  vsc.workspace.onDidChangeConfiguration(updateStatusBar)
 
   ctx.subscriptions.push(
-    vsc.commands.registerCommand('open-folder.open', commandOpen),
-    vsc.commands.registerCommand('open-folder.search', commandSearch),
+    vsc.commands.registerCommand('open-folder.open', command.open),
+    vsc.commands.registerCommand('open-folder.search', command.search),
   )
 }
 

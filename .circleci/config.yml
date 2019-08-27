@@ -13,25 +13,10 @@ vars:
           - /^prod\//
           - master
 
-  ts-base__prod: &ts-base__prod
+  open-folder__prod: &open-folder__prod
     filters:
       branches:
-        only: prod/ts-base
-
-  ts-check-cli__prod: &ts-check-cli__prod
-    filters:
-      branches:
-        only: prod/ts-check-cli
-
-  dev-react__prod: &dev-react__prod
-    filters:
-      branches:
-        only: prod/dev-react
-
-  dev-pptr__prod: &dev-pptr__prod
-    filters:
-      branches:
-        only: prod/dev-pptr
+        only: prod/open-folder
 
 executors:
   node:

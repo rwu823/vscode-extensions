@@ -1,7 +1,7 @@
 import * as vsc from 'vscode'
 import glob from 'fast-glob'
 
-export default async (_uri: vsc.Uri) => {
+export const search = async (_uri: vsc.Uri) => {
   const { rootPath } = vsc.workspace
   const settingSearch = vsc.workspace.getConfiguration('search')
 
@@ -20,3 +20,5 @@ export default async (_uri: vsc.Uri) => {
       )
     })
 }
+
+export default search

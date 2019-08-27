@@ -28,7 +28,5 @@ const writeFile = (pathName: string, data: string) =>
 
     rm -rf $(find . -name '*.map')
     rm -rf $(find node_modules -name '*.d.ts' -o -name '*.md' -o -name 'LICENSE')
-
-    vsce publish
     `
 })()

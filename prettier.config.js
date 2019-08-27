@@ -1,5 +1,3 @@
 const base = require('@ts-mono/base/prettier.config')
 
-module.exports = Object.assign(base, {
-
-})
+module.exports = Object.assign(base, {})

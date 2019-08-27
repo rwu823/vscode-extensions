@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import * as vsc from 'vscode'
 
-export default async (uri: vsc.Uri) => {
+export const open = async (uri: vsc.Uri) => {
   let fullDirPath = '.'
 
   if (uri) {
@@ -23,3 +23,5 @@ export default async (uri: vsc.Uri) => {
     })
   })
 }
+
+export default open
