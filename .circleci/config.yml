@@ -89,6 +89,7 @@ jobs:
       - checkout-install
       - run: npx jest --passWithNoTests
       - run: bash <(curl -s https://codecov.io/bash)
+
   lint:
     executor: node
     steps:
@@ -111,8 +112,4 @@ workflows:
       - test:
           <<: *branch_testing
       - lint:
-          <<: *branch_testing
-      - ts-check-cli__build:
-          <<: *branch_testing
-      - ts-base__build:
           <<: *branch_testing
