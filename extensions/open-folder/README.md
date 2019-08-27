@@ -11,10 +11,6 @@
   </a>
 </p>
 
-<h4 align="center">
-  <sub>Open Folder Files In The Same Code Instance.</sub>
-</h4>
-
 ## Usage
 1. Open Command Palette
 2. Type: `search folder to open`

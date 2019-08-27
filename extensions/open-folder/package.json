@@ -1,7 +1,7 @@
 {
   "name": "open-folder",
   "displayName": "Open Folder",
-  "description": "Open Folder Files In The Same Code Instance.",
+  "description": "Open all files of folder in the same VSCode instance.",
   "version": "0.1.0",
   "license": "MIT",
   "icon": "media/logo.png",
