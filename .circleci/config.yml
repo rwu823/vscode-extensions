@@ -68,6 +68,13 @@ commands:
               source $BASH_ENV
 
 jobs:
+  build:
+    executor: node
+    steps:
+        - checkout-install
+        - run: yarn build
+        - run: cd released && yarn vsce package
+
   test:
     executor: node
     steps:
@@ -94,6 +101,8 @@ workflows:
 
   Base:
     jobs:
+      - build:
+          <<: *branch_testing
       - test:
           <<: *branch_testing
       - lint:
