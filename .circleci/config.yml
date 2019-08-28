@@ -26,6 +26,10 @@ executors:
       - image: circleci/node:12
 
 commands:
+    use-vsce:
+      steps:
+        - run: yarn global add vsce
+
     setup-docker:
       steps:
         - setup_remote_docker:
@@ -65,6 +69,7 @@ commands:
             name: Exports Env
             command: |
               echo "$(node env/export)" >> $BASH_ENV
+              echo 'export PATH="$(yarn global bin):$PATH"' >> $BASH_ENV
               source $BASH_ENV
 
 jobs:
@@ -72,9 +77,9 @@ jobs:
     executor: node
     steps:
       - checkout-install
+      - use-vsce
       - run: yarn workspace open-folder build
-      - run: cd extensions/open-folder/released
-      - run: yarn vsce -p $VSCE_TOKEN
+      - run: cd extensions/open-folder/released && vsce publish -p $VSCE_TOKEN
 
   test:
     executor: node
