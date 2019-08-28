@@ -1,16 +1,8 @@
 import sh from 'sh-exec'
 
-import pkgJSON from '../package.json'
-
-const { GITHUB_TOKEN } = process.env
+const { TOKEN_REPO } = process.env
 
 const deploymentPackagesSet = new Set(['open-folder'])
-
-const tokenRepo = pkgJSON.repository.replace(
-  /^(https:\/\/)/,
-  `$1${GITHUB_TOKEN}@`,
-)
-
 const getDeploymentPackages = async () => {
   const stdout = await sh`git diff --name-only HEAD~1`
 
@@ -35,7 +27,7 @@ const getDeploymentPackages = async () => {
       `
 
       sh.quiet`
-        git push ${tokenRepo} --force ${modifiedPackages
+        git push ${TOKEN_REPO} --force ${modifiedPackages
         .map(pkg => `HEAD:refs/heads/prod/${pkg}`)
         .join(' ')}
       `
