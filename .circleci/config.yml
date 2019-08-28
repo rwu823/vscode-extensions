@@ -13,7 +13,7 @@ vars:
           - /^prod\//
           - master
 
-  open-folder__prod: &open-folder__prod
+  branch_open-folder__prod: &branch_open-folder__prod
     filters:
       branches:
         only: prod/open-folder
@@ -68,12 +68,13 @@ commands:
               source $BASH_ENV
 
 jobs:
-  build:
+  deploy-open-folder:
     executor: node
     steps:
-        - checkout-install
-        - run: yarn build
-        - run: cd released && yarn vsce package
+      - checkout-install
+      - run: yarn workspace open-folder build
+      - run: cd extensions/open-folder/released
+      - run: yarn vsce -p $VSCE_TOKEN
 
   test:
     executor: node
@@ -98,11 +99,14 @@ jobs:
 
 workflows:
   version: 2
-
+  Deploy:
+    jobs:
+      - deploy-open-folder:
+          <<: *branch_open-folder__prod
   Base:
     jobs:
-      - build:
-          <<: *branch_testing
+      - mono-deploy:
+          <<: *branch_master
       - test:
           <<: *branch_testing
       - lint:
