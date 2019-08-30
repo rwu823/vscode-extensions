@@ -2,7 +2,7 @@
   "name": "open-folder",
   "displayName": "Open Folder",
   "description": "Open all files of folder in the same VSCode instance.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "MIT",
   "icon": "media/logo.png",
   "keywords": [
