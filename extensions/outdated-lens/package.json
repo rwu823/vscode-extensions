@@ -1,0 +1,40 @@
+{
+  "name": "outdated-lens",
+  "displayName": "Outdated Lens",
+  "description": "",
+  "version": "0.0.1",
+  "license": "MIT",
+  "icon": "media/logo.png",
+  "keywords": [
+    "outdated",
+    "lens",
+    "packages",
+    "yarn",
+    "npm"
+  ],
+  "engines": {
+    "vscode": "^1.37.0"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out",
+  "contributes": {
+    "configuration": {
+
+    },
+    "menus": {
+
+    },
+    "commands": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "rm -rf released && mkdir released && ts-node scripts/build"
+  }
+}

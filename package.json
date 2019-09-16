@@ -6,9 +6,9 @@
   ],
   "devDependencies": {
     "@ts-mono/base": "rwu823/ts-mono#base/latest",
-    "@types/vscode": "^1.37.0",
+    "@types/vscode": "^1.38.0",
     "sh-exec": "^2.1.0",
-    "typescript": "^3.6.2"
+    "typescript": "^3.6.3"
   },
   "scripts": {
     "rm-pkg": "rm -rf node_modules extensions/*/node_modules"
