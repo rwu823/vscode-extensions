@@ -44,6 +44,15 @@
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}/extensions/outdated-lens"
       ],
+    },
+    {
+      "type": "extensionHost",
+      "request": "launch",
+      "name": "dev:remove-tag",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/extensions/remove-tag"
+      ],
     }
   ]
 }
