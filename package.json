@@ -5,10 +5,10 @@
     "extensions/*"
   ],
   "devDependencies": {
-    "@ts-mono/base": "rwu823/ts-mono#base/latest",
-    "@types/vscode": "^1.37.0",
-    "sh-exec": "^2.1.0",
-    "typescript": "^3.6.2"
+    "@ts-mono/base": "rwu823/ts-mono#pkg/ts-base",
+    "@types/vscode": "1.51.0",
+    "sh-exec": "2.1.0",
+    "typescript": "4.1.2"
   },
   "scripts": {
     "rm-pkg": "rm -rf node_modules extensions/*/node_modules"
