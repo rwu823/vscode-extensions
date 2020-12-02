@@ -1,5 +1,5 @@
-import * as vsc from 'vscode'
 import path from 'path'
+import * as vsc from 'vscode'
 import { Config } from './types'
 
 const status = vsc.window.createStatusBarItem(vsc.StatusBarAlignment.Right)

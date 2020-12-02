@@ -13,7 +13,7 @@ export const search = async (_uri: vsc.Uri) => {
         ignore: Object.keys(settingSearch.exclude),
       }),
     )
-    .then(sel => {
+    .then((sel) => {
       vsc.commands.executeCommand(
         'open-folder.open',
         vsc.Uri.file(`${rootPath}/${sel}`),
