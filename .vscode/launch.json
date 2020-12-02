@@ -36,5 +36,14 @@
         "--extensionDevelopmentPath=${workspaceFolder}/extensions/open-folder"
       ],
     },
+    {
+      "type": "extensionHost",
+      "request": "launch",
+      "name": "dev:tw-futures",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/extensions/tw-futures"
+      ],
+    },
   ]
 }

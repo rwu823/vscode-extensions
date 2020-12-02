@@ -1,8 +1,5 @@
 {
   "extends": [
-    "./node_modules/@ts-mono/base/.eslintrc.json"
-  ],
-  "rules": {
-    "import/no-unresolved": 0,
-  }
+    "@ts-mono"
+  ]
 }

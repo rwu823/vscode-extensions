@@ -1,0 +1,66 @@
+{
+  "name": "tw-futures",
+  "displayName": "TW Futures",
+  "description": "Monitoring Taiwan futures all day.",
+  "version": "0.0.1",
+  "icon": "media/up.svg",
+  "engines": {
+    "vscode": "^1.51.0"
+  },
+  "keywords": [
+    "stock",
+    "futures",
+    "taiwan"
+  ],
+  "main": "./out",
+  "activationEvents": [
+    "*"
+  ],
+
+  "contributes": {
+    "configuration": {},
+    "menus": {
+      "view/title": [
+        {
+          "command": "tw-futures.refresh",
+          "group": "navigation",
+          "when": "view == tw.futures"
+
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "tw-futures.refresh",
+        "category": "TW Futures",
+        "title": "Refresh",
+        "icon": "media/refresh.svg"
+
+      }
+    ],
+
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "tw-futures",
+          "title": "Futures",
+          "icon": "media/up.svg"
+        }
+      ]
+    },
+    "views": {
+      "tw-futures": [
+        {
+          "id": "tw.futures",
+          "name": "TW"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "got": "11.8.0"
+  }
+}
