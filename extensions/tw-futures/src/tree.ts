@@ -25,7 +25,7 @@ export class TreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     item?: vscode.TreeItem & { upDown: number },
   ): Promise<vscode.TreeItem[]> {
     const date: vscode.TreeItem = {
-      description: `${format(getTWZone(), 'E HH:mm:ssX MM/dd', {})}`,
+      description: `${format(getTWZone(), 'E MM/dd HH:mm:ssX', {})}`,
     }
 
     const children = await (await getPoints()).map<vscode.TreeItem>(
