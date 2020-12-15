@@ -5,8 +5,9 @@
 import path from 'path'
 import fs from 'fs'
 import vscode from 'vscode'
+import { format } from 'date-fns'
 
-import { stockAPI } from './utils'
+import { getPoints, getTWZone } from './utils'
 import { apiObjIDMap, mediaPath } from './consts'
 
 export class TreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
@@ -23,36 +24,25 @@ export class TreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
   async getChildren(
     item?: vscode.TreeItem & { upDown: number },
   ): Promise<vscode.TreeItem[]> {
-    const res = await stockAPI<
-      { contractName: string; updown: string; price: string }[]
-    >('mCht/quotesApi/getQuotes', {
-      searchParams: { objId: apiObjIDMap.TW_FUTURES_NIGHT },
-    })
-
     const date: vscode.TreeItem = {
-      description: new Date().toLocaleString(),
+      description: `${format(getTWZone(), 'E HH:mm:ssX MM/dd', {})}`,
     }
 
-    const children = res.body.map<vscode.TreeItem>((futures) => {
-      const upDown = parseFloat(futures.updown)
+    const children = await (await getPoints()).map<vscode.TreeItem>(
+      ({ name, base, close }) => {
+        let iconPath = path.join(mediaPath, 'dash.svg')
+        if (close > base) iconPath = path.join(mediaPath, 'up.svg')
+        else if (close < base) iconPath = path.join(mediaPath, 'down.svg')
 
-      let iconPath = path.join(mediaPath, 'dash.svg')
-      if (upDown > 0) iconPath = path.join(mediaPath, 'up.svg')
-      else if (upDown < 0) iconPath = path.join(mediaPath, 'down.svg')
+        const diff = close - base
 
-      const price = parseFloat(futures.price.replace(/,/g, ''))
-
-      const base = upDown >= 0 ? price - upDown : price + upDown
-
-      const p = ((Math.abs(upDown) / base) * 100).toFixed(2)
-
-      return {
-        label: `${futures.contractName} (${futures.price})`,
-        description: `${upDown} / ${p}%`,
-        iconPath,
-        collapsibleState: vscode.TreeItemCollapsibleState.Expanded,
-      }
-    })
+        return {
+          iconPath,
+          label: `${name} ${close}`,
+          description: `${diff} ${((Math.abs(diff) / base) * 100).toFixed(2)}%`,
+        }
+      },
+    )
 
     return [date, ...children]
   }

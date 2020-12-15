@@ -16,29 +16,16 @@
   "activationEvents": [
     "*"
   ],
-
   "contributes": {
     "configuration": {},
     "menus": {
       "view/title": [
-        {
-          "command": "tw-futures.refresh",
-          "group": "navigation",
-          "when": "view == tw.futures"
 
-        }
       ]
     },
     "commands": [
-      {
-        "command": "tw-futures.refresh",
-        "category": "TW Futures",
-        "title": "Refresh",
-        "icon": "media/refresh.svg"
 
-      }
     ],
-
     "viewsContainers": {
       "activitybar": [
         {
@@ -61,6 +48,8 @@
     "dev": "tsc -w"
   },
   "dependencies": {
+    "date-fns": "2.16.1",
+    "date-fns-timezone": "0.1.4",
     "got": "11.8.0"
   }
 }
