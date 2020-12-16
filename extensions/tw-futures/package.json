@@ -19,13 +19,9 @@
   "contributes": {
     "configuration": {},
     "menus": {
-      "view/title": [
-
-      ]
+      "view/title": []
     },
-    "commands": [
-
-    ],
+    "commands": [],
     "viewsContainers": {
       "activitybar": [
         {
@@ -51,5 +47,6 @@
     "date-fns": "2.16.1",
     "date-fns-timezone": "0.1.4",
     "got": "11.8.0"
-  }
+  },
+  "devDependencies": {}
 }

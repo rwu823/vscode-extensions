@@ -2,6 +2,8 @@ import got from 'got'
 import * as date from 'date-fns'
 import { parseFromTimeZone } from 'date-fns-timezone'
 
+import WebSocket from 'ws'
+
 export const getTWZone = () =>
   parseFromTimeZone(new Date().toString(), {
     timeZone: 'Asia/Taipei',
@@ -30,73 +32,59 @@ export const realtime = stockAPI.extend({
   prefixUrl: `${apiBase}/stock/techchart/realtimedata`,
 })
 
-type StockInfo = {
+interface StockInfo {
+  Id: string
   Name: string
+  Market: number
+  Open: number
+  High: number
+  Low: number
   Close: number
+  PreviousClose: number
   Change: number
   ChangePercent: number
+  CommodityId: string
+  TotalVolume: number
+  Time: string
+  Mean60Distance: number
+  Mean60DistanceRate: number
+  CommodityState: CommodityState
 }
 
+interface CommodityState {
+  Id: string
+  Nearby1: string
+  Nearby2: string
+  Morning: Morning
+  Night: Morning
+  Whole?: any
+}
+
+interface Morning {
+  Start: string
+  End: string
+}
 export const getPoints = () =>
-  Promise.all([
-    realtime.get<{ StockInfo: StockInfo }>('', {
-      searchParams: {
-        topDays: '1',
-        stockNo: 'WTX&',
-      },
-    }),
-    realtime.get<{ StockInfo: StockInfo }>('', {
-      searchParams: {
-        topDays: '1',
-        stockNo: 'WTXP&',
-      },
-    }),
-  ]).then(
-    ([
-      {
-        body: { StockInfo },
-      },
-    ]) => {},
-  )
-// export const features = stockAPI.extend({
-//   prefixUrl: `${apiBase}/wtx&`,
-// })
+  Promise.all(
+    ['WTX&', 'WTXP&', 'B1YM&', 'NAS', 'SP5', 'USDINDEX'].map((stockNo) =>
+      realtime.get<{ StockInfo: StockInfo }>('', {
+        searchParams: {
+          stockNo,
+          topDays: '1',
+        },
+      }),
+    ),
+  ).then((res) => res.map((r) => r.body.StockInfo))
 
-// export const getPoints = () =>
-//   Promise.all([
-//     features<{ flat: number }>({ url: 'commoditystate' }),
-//     features<{ bidPrice1: number }>({ url: `toponepieces` }),
+const ws = new WebSocket(
+  'wss://stream143.forexpros.com/echo/767/2yrvu2lt/websocket',
+  {
+    headers: {
+      'Sec-WebSocket-Key': '+fVs9C/1cXAcrYcvEamvuQ==',
+    },
+  },
+)
 
-//     // 夜盤
-//     featuresNight<{ flat: number }>({ url: 'commoditystate' }),
-//     featuresNight<{ bidPrice1: number }>({ url: `toponepieces` }),
-//   ]).then(
-//     ([
-//       {
-//         body: { flat: base },
-//       },
-//       {
-//         body: { bidPrice1: close },
-//       },
-
-//       {
-//         body: { flat: nightBase },
-//       },
-//       {
-//         body: { bidPrice1: nightClose },
-//       },
-//     ]) => {
-//       return [
-//         {
-//           name: '台指期',
-//           base,
-//           close,
-//         },
-//         {
-//           name: '台指期(夜)',
-//           base: nightBase,
-//           close: nightClose,
-//         },
-//       ]
-//     },
-//   )
+ws.on('message', (data) => {
+  console.info(data, 111)
+})

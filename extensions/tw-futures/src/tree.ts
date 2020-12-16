@@ -29,17 +29,16 @@ export class TreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     }
 
     const children = await (await getPoints()).map<vscode.TreeItem>(
-      ({ name, base, close }) => {
+      ({ Change, Name, ChangePercent, Close, PreviousClose }) => {
         let iconPath = path.join(mediaPath, 'dash.svg')
-        if (close > base) iconPath = path.join(mediaPath, 'up.svg')
-        else if (close < base) iconPath = path.join(mediaPath, 'down.svg')
-
-        const diff = close - base
+        if (Close > PreviousClose) iconPath = path.join(mediaPath, 'up.svg')
+        else if (Close < PreviousClose)
+          iconPath = path.join(mediaPath, 'down.svg')
 
         return {
           iconPath,
-          label: `${name} ${close}`,
-          description: `${diff} ${((Math.abs(diff) / base) * 100).toFixed(2)}%`,
+          label: `${Name} ${Close}`,
+          description: `${Change}(${ChangePercent}%)`,
         }
       },
     )
