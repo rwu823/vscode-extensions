@@ -1,0 +1,24 @@
+{
+  "name": "17live-deployment-version",
+  "displayName": "17live Version",
+  "description": "Lookup current deployment version for sta/prod",
+  "version": "0.0.1",
+  "main": "out",
+  "engines": {
+    "vscode": "^1.62.0"
+  },
+  "activationEvents": ["onView:17live-deployment-version"],
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "17live-deployment-version",
+          "name": "Node Dependencies"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "tsc -w"
+  }
+}

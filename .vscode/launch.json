@@ -5,6 +5,17 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/extensions/17live-deployment-version"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/extensions/17live-deployment-version/out/**/*.js"
+      ],
+      "name": "dev:17live-deployment-version",
+      "request": "launch",
+      "type": "pwa-extensionHost"
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "ts",
@@ -27,11 +38,18 @@
         "--runInBand"
       ],
     },
+    // {
+    //   "type": "extensionHost",
+    //   "request": "launch",
+    //   "name": "dev:17live-deployment-version",
+    //   "args": [
+    //     "--extensionDevelopmentPath=${workspaceFolder}/extensions/17live-deployment-version",
+    //   ],
+    // },
     {
       "type": "extensionHost",
       "request": "launch",
       "name": "dev:open-folder",
-      "runtimeExecutable": "${execPath}",
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}/extensions/open-folder"
       ],

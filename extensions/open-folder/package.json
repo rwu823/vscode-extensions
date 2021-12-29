@@ -67,7 +67,7 @@
     ]
   },
   "dependencies": {
-    "fast-glob": "3.0.4"
+    "fast-glob": "3.2.7"
   },
   "scripts": {
     "dev": "tsc -w",
